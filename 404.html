@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html {
+            background: -webkit-canvas(starfield);
+            background: -moz-element(#starfield);
+            width:100%;
+            height:100%;
+            background-color:#111;
+        }
+        body {
+            height:100%;
+            font-family:sans-serif;
+            font-size:24px;
+            overflow:hidden;
+        }
+        @-moz-keyframes out-of-here-text {
+            0% { color: #f30; }
+            5% { color: #fc0; }
+            10% { color: #f30; }
+            15% { color: #fc0; }
+            20% { color: #f30; }
+            25% { color: #fc0; }
+            30% { color: #f30; }
+            35% { color: #fc0; }
+            40% { color: #f30; }
+            45% { color: #fc0; }
+            50% { color: #f30; }
+            55% { color: #fc0; }
+            60% { color: #f30; }
+            65% { color: #fc0; }
+            70% { color: #f30; }
+            75% { color: #fc0; }
+            80% { color: #f30; }
+            85% { color: #fc0; }
+            90% { color: #f30; }
+            95% { color: #fc0; }
+            100% { color: #f30; }
+        }
+        @-moz-keyframes out-of-here {
+            0% { -moz-transform: translate(3px, 2px) rotate(0deg); }
+            10% { -moz-transform: translate(-2px, -3px) rotate(-1deg); }
+            20% { -moz-transform: translate(-4px, 0px) rotate(1deg); }
+            30% { -moz-transform: translate(0px, 3px) rotate(0deg); }
+            40% { -moz-transform: translate(2px, -2px) rotate(1deg); }
+            50% { -moz-transform: translate(-2px, 3px) rotate(-1deg); }
+            60% { -moz-transform: translate(-4px, 2px) rotate(0deg); }
+            70% { -moz-transform: translate(3px, 2px) rotate(-1deg); }
+            80% { -moz-transform: translate(-2px, -2px) rotate(1deg); }
+            90% { -moz-transform: translate(3px, 3px) rotate(0deg); }
+            100% { -moz-transform: translate(2px, -3px) rotate(-1deg); }
+        }
+        @-o-keyframes out-of-here-text {
+            0% { color: #f30; }
+            5% { color: #fc0; }
+            10% { color: #f30; }
+            15% { color: #fc0; }
+            20% { color: #f30; }
+            25% { color: #fc0; }
+            30% { color: #f30; }
+            35% { color: #fc0; }
+            40% { color: #f30; }
+            45% { color: #fc0; }
+            50% { color: #f30; }
+            55% { color: #fc0; }
+            60% { color: #f30; }
+            65% { color: #fc0; }
+            70% { color: #f30; }
+            75% { color: #fc0; }
+            80% { color: #f30; }
+            85% { color: #fc0; }
+            90% { color: #f30; }
+            95% { color: #fc0; }
+            100% { color: #f30; }
+        }
+        @-o-keyframes out-of-here {
+            0% { -webkit-transform: translate(3px, 2px) rotate(0deg); }
+            10% { -webkit-transform: translate(-2px, -3px) rotate(-1deg); }
+            20% { -webkit-transform: translate(-4px, 0px) rotate(1deg); }
+            30% { -webkit-transform: translate(0px, 3px) rotate(0deg); }
+            40% { -webkit-transform: translate(2px, -2px) rotate(1deg); }
+            50% { -webkit-transform: translate(-2px, 3px) rotate(-1deg); }
+            60% { -webkit-transform: translate(-4px, 2px) rotate(0deg); }
+            70% { -webkit-transform: translate(3px, 2px) rotate(-1deg); }
+            80% { -webkit-transform: translate(-2px, -2px) rotate(1deg); }
+            90% { -webkit-transform: translate(3px, 3px) rotate(0deg); }
+            100% { -webkit-transform: translate(2px, -3px) rotate(-1deg); }
+        }
+        @-webkit-keyframes out-of-here-text {
+            0% { color: #f30; }
+            5% { color: #fc0; }
+            10% { color: #f30; }
+            15% { color: #fc0; }
+            20% { color: #f30; }
+            25% { color: #fc0; }
+            30% { color: #f30; }
+            35% { color: #fc0; }
+            40% { color: #f30; }
+            45% { color: #fc0; }
+            50% { color: #f30; }
+            55% { color: #fc0; }
+            60% { color: #f30; }
+            65% { color: #fc0; }
+            70% { color: #f30; }
+            75% { color: #fc0; }
+            80% { color: #f30; }
+            85% { color: #fc0; }
+            90% { color: #f30; }
+            95% { color: #fc0; }
+            100% { color: #f30; }
+        }
+        @-webkit-keyframes out-of-here {
+            0% { -webkit-transform: translate(3px, 2px) rotate(0deg); }
+            10% { -webkit-transform: translate(-2px, -3px) rotate(-1deg); }
+            20% { -webkit-transform: translate(-4px, 0px) rotate(1deg); }
+            30% { -webkit-transform: translate(0px, 3px) rotate(0deg); }
+            40% { -webkit-transform: translate(2px, -2px) rotate(1deg); }
+            50% { -webkit-transform: translate(-2px, 3px) rotate(-1deg); }
+            60% { -webkit-transform: translate(-4px, 2px) rotate(0deg); }
+            70% { -webkit-transform: translate(3px, 2px) rotate(-1deg); }
+            80% { -webkit-transform: translate(-2px, -2px) rotate(1deg); }
+            90% { -webkit-transform: translate(3px, 3px) rotate(0deg); }
+            100% { -webkit-transform: translate(2px, -3px) rotate(-1deg); }
+        }
+        #nope {
+            -o-animation-name: out-of-here;
+            -o-animation-duration: 0.3s;
+            -o-transform-origin:50% 50%;
+            -o-animation-iteration-count: infinite;
+            -o-animation-timing-function: linear;
+            -moz-animation-name: out-of-here;
+            -moz-animation-duration: 0.3s;
+            -moz-transform-origin:50% 50%;
+            -moz-animation-iteration-count: infinite;
+            -moz-animation-timing-function: linear;
+            -webkit-animation-name: out-of-here;
+            -webkit-animation-duration: 0.3s;
+            -webkit-transform-origin:50% 50%;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+        }
+        #nope-container {
+            -o-animation-name: out-of-here-text;
+            -o-animation-duration: 0.3s;
+            -o-transform-origin:50% 50%;
+            -o-animation-iteration-count: infinite;
+            -o-animation-timing-function: linear;
+            -moz-animation-name: out-of-here-text;
+            -moz-animation-duration: 0.3s;
+            -moz-transform-origin:50% 50%;
+            -moz-animation-iteration-count: infinite;
+            -moz-animation-timing-function: linear;
+            -webkit-animation-name: out-of-here-text;
+            -webkit-animation-duration: 0.3s;
+            -webkit-transform-origin:50% 50%;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+           width:100%;
+           height:100%;
+        }
+        #nope {
+           height:100%;
+           display: -webkit-box;
+           -webkit-box-orient: horizontal;
+           -webkit-box-pack: center;
+           -webkit-box-align: center;
+           text-align: center;
+           vertical-align: middle;
+        }
+     </style>
+     <script type="text/javascript" src="http://cdn.brittg.com/js/jquery.js"></script>
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-34543516-1']);
+        _gaq.push(['_setDomainName', 'brittg.com']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <script type="text/javascript">
+        /* Browser Detection */
+        function testCSS(prop) {
+            return prop in document.documentElement.style;
+        }
+        var isFirefox = testCSS('MozBoxSizing');
+
+        var globalDirection = ( 12 * Math.PI ) / 7.8;
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var minStars = 40;
+        var ctx;
+
+        var Star = function(x,y,size,speed) {
+            var self = this;
+            self.x = width - x;
+            self.y = y;
+            self.size = size;
+            self.speed = speed;
+
+            self.update = function() {
+                self.x -= self.speed * Math.cos(globalDirection);
+                self.y -= self.speed * Math.sin(globalDirection);
+                if (self.x > width || self.x < 0) {
+                    self.remove();
+                }
+                if (self.y > height || self.y < 0) {
+                    self.remove();
+                }
+            }
+            self.remove = function() {
+                stars.splice(stars.indexOf(self), 1);
+            }
+            self.draw = function() {
+                ctx.fillStyle = "#fff";
+                ctx.fillRect(self.x, self.y, self.size, self.size);
+            }
+        }
+
+        var stars = [];
+
+        function draw() {
+            if (stars.length < minStars) {
+                addStar();
+            }
+            // ctx.globalAlpha = .4;
+            ctx.fillStyle = "#111";
+            ctx.fillRect(0,0,width,height);
+            // ctx.globalAlpha = 1;
+            for (star in stars) {
+                stars[star].draw();
+                stars[star].update();
+            }
+            if (isFirefox) {
+                mozRequestAnimationFrame(draw);
+            } else {
+                webkitRequestAnimationFrame(draw);
+            }
+        }
+
+        function addStar() {
+            stars.push(new Star(Math.random() * width, 0, Math.random() * 10, 10 + Math.random() * 25));
+        }
+
+        $(document).ready(function() {
+            if (isFirefox) {
+                $("body").append("<canvas id='starfield'></canvas>")
+                var canvas = document.getElementById("starfield");
+                canvas.height = height;
+                canvas.width = width/3;
+                ctx = canvas.getContext('2d');
+            } else {
+                ctx = document.getCSSCanvasContext("2d", "starfield", width / 3, height);
+            }
+            console.log("ctx defined")
+            draw();
+        });
+
+     </script>
+</head>
+<body>
+    <div id="nope-container">
+        <div id="nope" style="margin:auto;">
+            <h2>
+                NOTHING TO DO HERE
+            </h2>
+            <img src="./nope.gif" alt="NOPE" />
+            <h3>
+                404 - FILE NOT FOUND
+            </h3>
+        </div>
+    </div>
+</body>
+</html>
