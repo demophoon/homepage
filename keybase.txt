@@ -1,0 +1,73 @@
+==================================================================
+https://keybase.io/demophoon
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://www.brittg.com
+  * I am demophoon (https://keybase.io/demophoon) on keybase.
+  * I have a public key with fingerprint 5D11 9973 6DD7 5CE9 6D89  95CB 083B 3535 EC5E 3ABA
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "5d1199736dd75ce96d8995cb083b3535ec5e3aba",
+            "host": "keybase.io",
+            "key_id": "083b3535ec5e3aba",
+            "kid": "0101989d45a348741150762523c0a55b8511aa22aee6c5a9b1ef07f121196a27531a0a",
+            "uid": "52dc18d80455ae8b0924a5219ff98b19",
+            "username": "demophoon"
+        },
+        "service": {
+            "hostname": "www.brittg.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1424995747,
+    "expire_in": 157680000,
+    "prev": "fe7a962c1131a9142990a4cd026db2f715cfd35257cc42ed2d457b8808c5f75e",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owFtUmtMFFcUXpZHgbJViVRbbaFjwFphnTszd2dmGyPEqDza1EZpwVhwHnfYEdlZ
+dheWh6LpKiIitBWJ2pa0QlcQ04AFZEssAUKIWIxtpCQSyqNYBRFLakNIS9q71P7r
+/XNyz/m+75zz5Xxk8Nfp/YLfhHA2w/yt361pUbf3SVt7MSFqciFhLiay0XJQVGsW
+stvsqtVJmAkoA8DzLG2SZRZKiDfJHM9DSSQ5WqQhDZEEES2IAhFLWDSHj4FlRMGB
+jKqGc/iTqco4+z/47H8LgAQ8x8sMFGiGYxkAIMmaKEjREilAKHIQAEGgKAEhkwQF
+XgRIIVkFUHguk0CxkAYC6ZPLW5aDlCwBTuZIBkIBcSLJU4wAKcArCs+JgPcBHchu
+FXIQRssoR7NZNM1KHIklcDpflZDPA98qzyAul8so2lWnM8soaTmYbrNrTk3SDuGa
+xem0mX1UZ6FtGYvEzGcqmaJqlbGTmJCP7A4VtzADjJScqk8WMBSDfWQZNpZABTbV
+jjJVHwKyJo7Ez9cG5WNJBbECb6IkAPCePKbxPCkwkkxSJlmkFBZASZFpSEFWkhgK
+yRQ2khU5juQkqLAQEb69cq0aYWbwmEIWlnSoWVbBmWcPQMSR0FP69QE6P70uKFDv
+uwZdaMjK/07EHb9iKbKhpDhnNAukZXtTrm19LfuLbxZLj1/uKr3w8pPJnaP+btPZ
+i7VW0ECf7nuxev/xNXRyXLD0/IxhsO3Y++uHIonUrbeL75WsNc63IM9U2DsM+Lwn
+4tH1++Grv+MzxjrC7ptq9W6t9o+I2qeJVRWRl0brSqNGT65Y5Nwe97vp0LHDdbdu
+vumr5K72xM60XQlX4g4u1Vx9NDH8oPKTSfax9vrCfMSZ5tY6OSno7+2NeXuuDqrX
+funs7b+5+8ruqLSoh4bZmoyJudR1qeeH1nXtqm3Oby1/uKk/rutPvvnQC+6YOPBD
+0oUdVVXp49D49XPjd16q6SA2Jdy4uS1F6uDfoMdT6j1KgjdgZWXwb7cNrtLOx1Ht
+v1YQ9YXX3zu3YCibCWgoq0RgZs1d72cnDlfMRRbFnWti6swlDxa9Bau6b+QNvjXF
+brkYEt27/WdYvrStde6wq+hg9aqF9PA7nugDhCdj4pWefbHTud0Dizszfu8bsYSO
+BR67l1Sv1MOWIP8ov5GkRj76+ySD15sifnAmFVtS/alLIvY1987Peo7eCimKHz86
+PeTY0t4WHjPQ8PHezpamzWXxMSd+dDf2WCKmcpvCtp9M7FA3DjQ0/zQSWxhQZuwr
+Fw/sH/7w8gb19B5da1vj2/GBXRu6X6X+6vevKwj6kk62nt14fnOo5Wn86hR9zeTa
+4Utj/wA=
+=Hz2U
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/demophoon
+
+==================================================================
+
