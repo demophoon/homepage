@@ -22,7 +22,7 @@
         })();
     </script>
 
-    <link href='http://fonts.googleapis.com/css?family=Geo' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Geo' rel='stylesheet' type='text/css'>
     <style type="text/css">
         html {
             min-height:100%;
@@ -200,7 +200,7 @@
     <div class="container">
         <div id="container" class="well span4" style="margin-top:35px;">
             <center>
-                <a href="http://l.brittg.com/googleplus"><img id="icon" src="./google +.png" \></a>
+                <a href="http://brittg.com/googleplus"><img id="icon" src="./google +.png" \></a>
                 <a href="http://twitter.com/demophoon"><img id="icon" src="./twitter.png" \></a>
                 <a href="http://www.linkedin.com/in/bgresham"><img id="icon" src="./linkedin.png" \></a>
                 <a href="https://github.com/demophoon"><img id="icon" src="./github.png" \></a>
