@@ -17,19 +17,36 @@
         body {
             min-height:100%;
             padding-top:10%;
-            background: url('bg-orange.jpg') no-repeat center center fixed;
+        }
+        #bg {
+            z-index: -1;
+            position: fixed;
+            top: 0px;
+            left:0px;
+            height:100%;
+            width: 100%;
+            background: url('bg.jpg') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
             overflow:auto;
         }
-        #big-me {
+        #big-me img {
+            -moz-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+            filter: FlipH;
+            -ms-filter: "FlipH";
+        }
+        #big-me, #big-me img {
             position:fixed;
             bottom:0px;
             right:0px;
             margin-right:75px;
             margin-top:10%;
+            margin-bottom:-175px;
             animation:breath 5s infinite;
             -moz-animation:breath 5s infinite; /* Firefox */
             -webkit-animation:breath 5s infinite; /* Safari and Chrome */
@@ -260,6 +277,67 @@
         });
 
     </script>
+
+    <script charset="utf-8">
+
+        var primary_color = Math.floor(Math.random() * 18) * 200;
+        var secondary_color = Math.floor(Math.random() * 18) * 200;
+        var base_url = '/img/avatar/';
+        var bases = [
+            'base.gif',
+        ];
+        var base_shirts = [
+            'shirt0.gif',
+            'shirt1.gif',
+            'shirt2.gif',
+            'shirt3.gif',
+            'shirt4.gif',
+            'shirt5.gif',
+            'shirt6.gif',
+            'shirt7.gif',
+            'shirt8.gif',
+            'shirt9.gif',
+            'shirt10.gif',
+            'shirt11.gif',
+            'shirt12.gif',
+        ];
+        var jackets = [
+            'jacket0.gif',
+            'jacket1.gif',
+        ];
+        var shoes = [
+            'shoes.gif',
+        ];
+        var zidx = 1;
+        var final_images = [];
+        function add_apparel(items, color, chance) {
+            if (color == undefined) {
+                color = 0;
+            }
+            if (chance == undefined || chance > Math.random()) {
+                var src = base_url + items[Math.floor(Math.random() * items.length)];
+                var img = new Image();
+                img.src = src;
+                img.style.filter = 'hue-rotate(' + color + 'deg)';
+                img.style.zIndex = zidx;
+                final_images.push(img);
+            }
+            zidx += 1;
+        }
+
+        add_apparel(bases);
+        add_apparel(shoes, primary_color);
+        add_apparel(base_shirts, primary_color);
+        add_apparel(jackets, secondary_color, .5);
+
+        $(document).ready(function() {
+            document.getElementById('bg').style.filter = 'hue-rotate(' + primary_color + 'deg)';
+            for (var x=0; x<final_images.length; x+=1) {
+                $("#big-me").prepend(final_images[x]);
+            }
+        });
+    </script>
+
     <script type="text/javascript">
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-34543516-1']);
@@ -328,6 +406,7 @@
             left: 0px;
         }
     </style>
+    <div id='bg'></div>
     <div data-bind='attr: { class: nowPlayingClass }' id='musicPullDown'>
         <a class='pull-right' target='_blank' data-bind='attr: { href: url }'>
             <img data-bind='attr: { src: albumArt }' />
@@ -344,7 +423,8 @@
         <br>
     </div>
     <div style='position: absolute; top:0px; right:0px; width: 100%; height: 15px;' onmouseover='javascript:viewModel.showPullDown(true)'></div>
-    <img class="pull-right" id="big-me" src="./britt-halloween.png" alt="Me" />
+    <div class='pull-right' id='big-me'>
+    </div>
     <div class="container">
         <div id="container" class="well span4" style="margin-top:35px;">
             <center>
