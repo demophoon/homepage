@@ -58,6 +58,7 @@
             padding:36px;
         }
         #icon {
+
         }
         @keyframes breath {
             0% {
@@ -147,7 +148,7 @@
                 left:0px;
             }
         }
-        #bottom-banner { 
+        #bottom-banner {
             -moz-animation:slidein 0.7s; /* Safari and Chrome */
             -moz-animation-timing-function:ease-out;
             -webkit-animation:slidein 0.7s; /* Safari and Chrome */
@@ -331,7 +332,37 @@
         add_apparel(jackets, secondary_color, .5);
 
         $(document).ready(function() {
+            nouns = [
+                "Software",
+                "Python",
+                "Ruby",
+                "Vim",
+                "Dotfile",
+                "Automation",
+                "Puppet",
+                "Git",
+                "Bike",
+                "Taco",
+            ];
+            pronouns = [
+                "Enthusiast",
+                "Evangelist",
+                "Hacker",
+                "Fan",
+                "Admirer",
+                "Aficionado",
+                "Nerd",
+                "Geek",
+                "Nut",
+                "Addict",
+            ];
+            title = nouns[Math.floor(Math.random() * nouns.length)] + " ";
+            title += pronouns[Math.floor(Math.random() * pronouns.length)];
+            $('.fun_title').each(function (elm) {
+                $(this).html(title);
+            });
             document.getElementById('bg').style.filter = 'hue-rotate(' + primary_color + 'deg)';
+            document.getElementById('icons').style.filter = 'brightness(200%) hue-rotate(' + primary_color + 'deg)';
             for (var x=0; x<final_images.length; x+=1) {
                 $("#big-me").prepend(final_images[x]);
             }
@@ -364,6 +395,19 @@
         }
     </style>
     <style type="text/css">
+        .transparent-bg {
+            border-radius: 25px;
+            background: rgba(0, 0, 0, .65);
+        }
+        #icons img {
+            padding: 2%;
+            width: 15%;
+            height: auto;
+        }
+        #icons img:hover {
+            filter: saturate(0) brightness(200%);
+        }
+
         #musicPullDown * {
             display: inline-block;
         }
@@ -425,25 +469,28 @@
     <div style='position: absolute; top:0px; right:0px; width: 100%; height: 15px;' onmouseover='javascript:viewModel.showPullDown(true)'></div>
     <div class='pull-right' id='big-me'>
     </div>
+
     <div class="container">
-        <div id="container" class="well span4" style="margin-top:35px;">
+        <div id="container" class="transparent-bg" style="margin-top:35px;">
             <center>
-                <a href="http://brittg.com/googleplus"><img id="icon" src="./google +.png" \></a>
-                <a href="http://twitter.com/demophoon"><img id="icon" src="./twitter.png" \></a>
-                <a href="http://www.linkedin.com/in/bgresham"><img id="icon" src="./linkedin.png" \></a>
-                <a href="https://github.com/demophoon"><img id="icon" src="./github.png" \></a>
-                <!--<a href="http://blog.brittg.com"><img id="icon" src="./wordpress.png" \></a>-->
-                <a href="mailto:britt@brittg.com"><img id="icon" src="./email.png" \></a>
+                <div id='icons'>
+                    <a href="https://brittg.com/twitter"><img src="/img/icons/twitter.svg" alt=""/></a>
+                    <a href="https://brittg.com/github"><img src="/img/icons/github.svg" alt=""/></a>
+                    <a href="https://brittg.com/linkedin"><img src="/img/icons/linkedin.svg" alt=""/></a>
+                    <a href="https://brittg.com/lastfm"><img src="/img/icons/lastfm.svg" alt=""/></a>
+                    <a href="mailto:britt@brittg.com"><img src="/img/icons/email.svg" alt=""/></a>
+                </div>
             </center>
         </div>
     </div>
+
     <div id="bottom-banner" class="hidden-phone">
-        <b>Britt Gresham</b>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;<small>Software Enthusiast</small>
+        <b>Britt Gresham</b>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;<small class="fun_title">Software Enthusiast</small>
     </div>
     <div id="bottom-banner-phone" class="visible-phone">
         <div id="phone-container">
             <b>Britt Gresham</b><br><br>
-            <small>Software Enthusiast</small>
+            <small class="fun_title">Software Enthusiast</small>
         </div>
     </div>
 </body>
