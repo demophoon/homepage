@@ -1,497 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta http-equiv="content-language" content="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Vhs test</title>
+        <style type='text/css'>
+            body {
+                background-color: #000;
+            }
+            img, canvas {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                height: 100%;
+                width: 100%;
+            }
+            canvas {
+                filter: blur(2px);
+                mix-blend-mode: screen;
+            }
+            #white_noise {
+                filter: blur(1px);
+                mix-blend-mode: overlay;
+                opacity: .15;
+            }
+        </style>
+    </head>
+    <body onclick="javascript: apply_gif_filters()">
+        <img id='vaporwave_gif' src='heyarnold.gif' />
+        <img id='white_noise' src='whitenoise.gif' />
+        <canvas id='canvas' width='500px' height='400px;'></canvas>
+        <script src='jquery.js' type='text/javascript'></script>
+        <script type="text/javascript" charset="utf-8">
 
-    <title>Britt Gresham</title>
-    <link rel="stylesheet" href="./bootstrap.css" />
+            var ctx, canvas;
+            var whiteNoise;
+            var frames = 0;
+            var maxFrames = 60;
 
-    <link href='//fonts.googleapis.com/css?family=Geo' rel='stylesheet' type='text/css'>
-    <style type="text/css">
-        html {
-            min-height:100%;
-        }
-        body {
-            min-height:100%;
-            padding-top:10%;
-        }
-        #bg {
-            z-index: -1;
-            position: fixed;
-            top: 0px;
-            left:0px;
-            height:100%;
-            width: 100%;
-            background: url('bg.jpg') no-repeat center center fixed;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
-            background-size: cover;
-            overflow:auto;
-        }
-        #big-me img {
-            -moz-transform: scaleX(-1);
-            -o-transform: scaleX(-1);
-            -webkit-transform: scaleX(-1);
-            transform: scaleX(-1);
-            filter: FlipH;
-            -ms-filter: "FlipH";
-        }
-        #big-me, #big-me img {
-            position:fixed;
-            bottom:0px;
-            right:0px;
-            margin-right:75px;
-            margin-top:10%;
-            margin-bottom:-175px;
-            animation:breath 5s infinite;
-            -moz-animation:breath 5s infinite; /* Firefox */
-            -webkit-animation:breath 5s infinite; /* Safari and Chrome */
-            -o-animation:breath 5s infinite; /* Opera */
-            animation-timing-function:ease;
-            -webkit-animation-timing-function:ease;
-        }
-        #container {
-            padding:36px;
-        }
-        #icon {
-
-        }
-        @keyframes breath {
-            0% {
-                bottom:-10px;
-            }
-            45% {
-                bottom:0px;
-            }
-            55% {
-                bottom:-4px;
-            }
-            100% {
-                bottom:-10px;
-            }
-        }
-        @-moz-keyframes breath {
-            0% {
-                bottom:-10px;
-            }
-            45% {
-                bottom:0px;
-            }
-            55% {
-                bottom:-4px;
-            }
-            100% {
-                bottom:-10px;
-            }
-        }
-        @-webkit-keyframes breath {
-            0% {
-                bottom:-10px;
-            }
-            45% {
-                bottom:0px;
-            }
-            55% {
-                bottom:-4px;
-            }
-            100% {
-                bottom:-10px;
-            }
-        }
-        @-o-keyframes breath {
-            0% {
-                bottom:-10px;
-            }
-            45% {
-                bottom:0px;
-            }
-            55% {
-                bottom:-4px;
-            }
-            100% {
-                bottom:-10px;
-            }
-        }
-        @keyframes slidein {
-            0% {
-                left:-100%;
-            }
-            100% {
-                left:0px;
-            }
-        }
-        @-webkit-keyframes slidein {
-            0% {
-                left:-100%;
-            }
-            100% {
-                left:0px;
-            }
-        }
-        @-moz-keyframes slidein {
-            0% {
-                left:-100%;
-            }
-            100% {
-                left:0px;
-            }
-        }
-        @-o-keyframes slidein {
-            0% {
-                left:-100%;
-            }
-            100% {
-                left:0px;
-            }
-        }
-        #bottom-banner {
-            -moz-animation:slidein 0.7s; /* Safari and Chrome */
-            -moz-animation-timing-function:ease-out;
-            -webkit-animation:slidein 0.7s; /* Safari and Chrome */
-            -webkit-animation-timing-function:ease-out;
-            -o-animation:slidein 0.7s; /* Safari and Chrome */
-            -o-animation-timing-function:ease-out;
-            animation:slidein 0.7s; /* Safari and Chrome */
-            animation-timing-function:ease-out;
-            position:absolute;
-            left:0px;
-            bottom:50px;
-            z-index:10;
-            color:#fff;
-            height:1.5em;
-            background:rgba(0, 0, 0, .65);
-            min-width:600px;
-            padding-left:35px;
-            padding-right:40px;
-            padding-top:0.8em;
-            font-family: 'Geo', sans-serif;
-            font-size:32px;
-        }
-        #bottom-banner-phone {
-            width:100%;
-            -moz-animation:slidein 0.7s; /* Safari and Chrome */
-            -moz-animation-timing-function:ease-out;
-            -webkit-animation:slidein 0.7s; /* Safari and Chrome */
-            -webkit-animation-timing-function:ease-out;
-            -o-animation:slidein 0.7s; /* Safari and Chrome */
-            -o-animation-timing-function:ease-out;
-            animation:slidein 0.7s; /* Safari and Chrome */
-            animation-timing-function:ease-out;
-            position:absolute;
-            left:0px;
-            bottom:50px;
-            z-index:10;
-            color:#fff;
-            background:rgba(0, 0, 0, .65);
-            font-family: 'Geo', sans-serif;
-            font-size:32px;
-        }
-        #phone-container {
-            height:2.7em;
-            padding-top:0.8em;
-            padding-left:35px;
-            padding-right:40px;
-        }
-    </style>
-    <link rel="stylesheet" href="./bootstrap-responsive.css" />
-
-    <script type="text/javascript" src="/js/jquery.js"></script>
-    <script type="text/javascript" src="/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/js/knockout-min.js"></script>
-    <script type='text/javascript'>
-        function duration(seconds) {
-            if (seconds < 60) {
-                seconds = ~~seconds;
-                return "00".substring(0, 2 - seconds.toString().length) + seconds;
-            } else if (seconds >= 60 && seconds < 3600) {
-                return ~~(seconds / 60) + ":" + duration(seconds % 60);
-            }
-        }
-
-        var ViewModel = function() {
-            var self = this;
-
-            this.lastSong = ko.observable();
-
-            this.track = ko.observable();
-            this.artist = ko.observable();
-            this.album = ko.observable();
-            this.artistArt = ko.observable();
-            this.albumArt = ko.observable();
-            this.duration = ko.observable();
-            this.url = ko.observable();
-            this.showPullDown = ko.observable();
-            this.nowPlaying = ko.observable();
-            this.tags = ko.observableArray();
-            this.nowPlayingClass = ko.computed(function() {
-                if ((this.lastSong() != this.track() && this.nowPlaying()) || this.showPullDown()) {
-                    setTimeout(function() {
-                        viewModel.lastSong(viewModel.track());
-                        viewModel.showPullDown(false);
-                    }, 17000);
-                    return 'pull-down';
-                } else {
-                    return '';
-                }
-            }, this);
-            this.renderedTitle = ko.computed(function() {
-                return [this.artist(), this.album()].filter(function(item) { return item != undefined; }).join(' - ');
-            }, this);
-        }
-
-        var viewModel = new ViewModel();
-
-        $(document).ready(function() {
-            function updateScrobbling() {
-                $.ajax({
-                    url: '/api/now_playing',
-                    dataType: 'json',
-                    success: function(data) {
-                        if (data.duration) {
-                            data.duration = duration(data.duration / 1000);
-                        }
-                        viewModel.artistArt(data.artist_art);
-                        viewModel.albumArt(data.album_art);
-                        viewModel.track(data.track);
-                        viewModel.artist(data.artist);
-                        viewModel.album(data.album);
-                        viewModel.duration(data.duration);
-                        viewModel.tags(data.tags);
-                        viewModel.url(data.url);
-                        viewModel.nowPlaying(data.now_playing);
-                        console.log(data);
-                    },
-                    error: function(data) {
-                        console.error(data);
+            function draw() {
+                frames = (frames + 1) % maxFrames;
+                if (frames % 4 == 0) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = '#666';
+                    for (var x=0; x<Math.floor(Math.random() * 3); x+=1) {
+                        randBar = Math.random() * canvas.height;
+                        barHeight = Math.random() * 30;
+                        //ctx.fillRect(0, randBar, canvas.width, barHeight);
+                        ctx.drawImage(whiteNoise, 0, randBar, canvas.width, barHeight);
                     }
-                });
+                }
+                window.requestAnimationFrame(draw);
             }
 
-            setInterval(updateScrobbling, 45000);
-            updateScrobbling();
-
-            ko.applyBindings(viewModel);
-        });
-
-    </script>
-
-    <script charset="utf-8">
-
-        var primary_color = Math.floor(Math.random() * 18) * 200;
-        var secondary_color = Math.floor(Math.random() * 18) * 200;
-        var base_url = '/img/avatar/';
-        var bases = [
-            'base.gif',
-        ];
-        var base_shirts = [
-            'shirt0.gif',
-            'shirt1.gif',
-            'shirt2.gif',
-            'shirt3.gif',
-            'shirt4.gif',
-            'shirt5.gif',
-            'shirt6.gif',
-            'shirt7.gif',
-            'shirt8.gif',
-            'shirt9.gif',
-            'shirt10.gif',
-            'shirt11.gif',
-            'shirt12.gif',
-        ];
-        var jackets = [
-            'jacket0.gif',
-            'jacket1.gif',
-        ];
-        var shoes = [
-            'shoes.gif',
-        ];
-        var zidx = 1;
-        var final_images = [];
-        function add_apparel(items, color, chance) {
-            if (color == undefined) {
-                color = 0;
+            function apply_gif_filters() {
+                gif_filters = [];
+                gif_filters.push('contrast(' + (35 + Math.random() * 55) + '%)')
+                gif_filters.push('hue-rotate(' + (15 + Math.random() * 65) + 'deg)')
+                gif_filters.push('saturate(' + (110 + Math.random() * 55) + '%)')
+                gif_filters.push('blur(' + Math.floor(Math.random() * 3) + 'px)');
+                gif = document.getElementById('vaporwave_gif');
+                gif.style.filter = gif_filters.join(' ');
             }
-            if (chance == undefined || chance > Math.random()) {
-                var src = base_url + items[Math.floor(Math.random() * items.length)];
-                var img = new Image();
-                img.src = src;
-                img.style.filter = 'hue-rotate(' + color + 'deg)';
-                img.style.zIndex = zidx;
-                final_images.push(img);
-            }
-            zidx += 1;
-        }
 
-        add_apparel(bases);
-        add_apparel(shoes, primary_color);
-        add_apparel(base_shirts, primary_color);
-        add_apparel(jackets, secondary_color, .5);
+            $(document).ready(function() {
+                whiteNoise = new Image();
+                whiteNoise.src = 'whitenoise.jpg';
+                canvas = document.getElementById('canvas');
 
-        $(document).ready(function() {
-            nouns = [
-                "Software",
-                "Python",
-                "Ruby",
-                "Vim",
-                "Dotfile",
-                "Automation",
-                "Puppet",
-                "Git",
-                "Bike",
-                "Taco",
-            ];
-            pronouns = [
-                "Enthusiast",
-                "Evangelist",
-                "Hacker",
-                "Fan",
-                "Admirer",
-                "Aficionado",
-                "Nerd",
-                "Geek",
-                "Nut",
-                "Addict",
-            ];
-            title = nouns[Math.floor(Math.random() * nouns.length)] + " ";
-            title += pronouns[Math.floor(Math.random() * pronouns.length)];
-            $('.fun_title').each(function (elm) {
-                $(this).html(title);
+                apply_gif_filters();
+
+                ctx = canvas.getContext('2d');
+                draw();
             });
-            document.getElementById('bg').style.filter = 'hue-rotate(' + primary_color + 'deg)';
-            document.getElementById('icons').style.filter = 'brightness(200%) hue-rotate(' + primary_color + 'deg)';
-            for (var x=0; x<final_images.length; x+=1) {
-                $("#big-me").prepend(final_images[x]);
-            }
-        });
-    </script>
-
-    <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', 'UA-34543516-1']);
-        _gaq.push(['_setDomainName', 'brittg.com']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-    </script>
-
-</head>
-<body>
-    <style type="text/css" media="screen and (min-device-width: 800px)">
-        #musicPullDown {
-            width: 450px;
-            max-width: 50%;
-        }
-    </style>
-    <style type="text/css" media="screen and (max-device-width: 799px)">
-        #musicPullDown {
-            width: 100%;
-        }
-    </style>
-    <style type="text/css">
-        .transparent-bg {
-            border-radius: 25px;
-            background: rgba(0, 0, 0, .65);
-        }
-        #icons img {
-            padding: 2%;
-            width: 15%;
-            height: auto;
-        }
-        #icons img:hover {
-            filter: saturate(0) brightness(200%);
-        }
-
-        #musicPullDown * {
-            display: inline-block;
-        }
-        #musicPullDown {
-            z-index: 10;
-            position: fixed;
-            top: -90px;
-            right: 0px;
-            height: 90px;
-            background: rgba(0, 0, 0, .65);
-            color: #f1f1f1;
-            -webkit-transition: top .75s;
-            transition: top .75s;
-            overflow: hidden;
-        }
-        #musicPullDown img {
-            height: 90px;
-            width: 90px;
-            margin-left: 15px;
-            background: url('https://brittg.com/u/ryYO5.png');
-            background-size: 90px 90px;
-        }
-        #musicPullDown h5, #musicPullDown h6 {
-            margin: 0px;
-            padding: 0px;
-        }
-        #musicPullDown #info {
-            padding-top: 10px;
-            padding-bottom: 15px;
-            text-align: right;
-        }
-        #musicPullDown.pull-down, #musicPullDown:hover {
-            top: 0px;
-        }
-        #musicPullDown #title {
-            padding-top: 1px;
-            padding-left: 5px;
-            position: absolute;
-            top: 0px;
-            left: 0px;
-        }
-    </style>
-    <div id='bg'></div>
-    <div data-bind='attr: { class: nowPlayingClass }' id='musicPullDown'>
-        <a class='pull-right' target='_blank' data-bind='attr: { href: url }'>
-            <img data-bind='attr: { src: albumArt }' />
-        </a>
-        <span id='title' class='pull-left'>
-            <small data-bind='if: nowPlaying'>Currently scrobbling</small>
-            <small data-bind='ifnot: nowPlaying'>Last song scrobbled</small>
-        </span>
-        <div id='info' class='pull-right'>
-            <h4 id='track'><span data-bind='text: track'></span></h4>
-            <br>
-            <h6><span data-bind='text: renderedTitle'></span></h6>
-        </div>
-        <br>
-    </div>
-    <div style='position: absolute; top:0px; right:0px; width: 100%; height: 15px;' onmouseover='javascript:viewModel.showPullDown(true)'></div>
-    <div class='pull-right' id='big-me'>
-    </div>
-
-    <div class="container">
-        <div id="container" class="transparent-bg" style="margin-top:35px;">
-            <center>
-                <div id='icons'>
-                    <a href="https://brittg.com/twitter"><img src="/img/icons/twitter.svg" alt=""/></a>
-                    <a href="https://brittg.com/github"><img src="/img/icons/github.svg" alt=""/></a>
-                    <a href="https://brittg.com/linkedin"><img src="/img/icons/linkedin.svg" alt=""/></a>
-                    <a href="https://brittg.com/lastfm"><img src="/img/icons/lastfm.svg" alt=""/></a>
-                    <a href="mailto:britt@brittg.com"><img src="/img/icons/email.svg" alt=""/></a>
-                </div>
-            </center>
-        </div>
-    </div>
-
-    <div id="bottom-banner" class="hidden-phone">
-        <b>Britt Gresham</b>&nbsp;&nbsp;&mdash;&nbsp;&nbsp;<small class="fun_title">Software Enthusiast</small>
-    </div>
-    <div id="bottom-banner-phone" class="visible-phone">
-        <div id="phone-container">
-            <b>Britt Gresham</b><br><br>
-            <small class="fun_title">Software Enthusiast</small>
-        </div>
-    </div>
-</body>
+        </script>
+        <iframe width="1" height="1" src="https://www.youtube.com/embed/z2ewmyuYz9I?rel=0&controls=0&showinfo=0&autoplay=1&loop=1" frameborder="0"></iframe>
+    </body>
 </html>
